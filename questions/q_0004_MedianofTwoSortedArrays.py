@@ -73,30 +73,3 @@ class Solution:
                         merged_array[median_indices[0]]
                         + merged_array[median_indices[1]]
                     ) / 2
-
-    def findMedianSortedArrays_binary_search(self, nums1: list[int], nums2: list[int]) -> float:  # type: ignore
-        m = len(nums1)
-        n = len(nums2)
-        if m > n:
-            return self.findMedianSortedArrays_binary_search(nums2, nums1)
-        start = 0
-        end = m
-
-        while start <= end:
-            pointer1 = (start + end) // 2
-            pointer2 = (m + n + 1) // 2 - pointer1
-
-            left1_max = nums1[pointer1 - 1] if pointer1 > 0 else -sys.maxsize - 1
-            right1_min = nums1[pointer1] if pointer1 < m else sys.maxsize
-            left2_max = nums2[pointer2 - 1] if pointer2 > 0 else -sys.maxsize - 1
-            right2_min = nums2[pointer2] if pointer2 < n else sys.maxsize
-
-            if left1_max <= right2_min and left2_max <= right1_min:
-                if (m + n) % 2 == 1:
-                    return max(left1_max, left2_max)
-                else:
-                    return (max(left1_max, left2_max) + min(right1_min, right2_min)) / 2
-            elif left1_max > right2_min:
-                end = pointer1 - 1
-            elif left2_max > right1_min:
-                start = pointer1 + 1

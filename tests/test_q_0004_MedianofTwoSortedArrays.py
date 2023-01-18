@@ -23,15 +23,3 @@ class TestSolution:
             )
             == output
         )
-
-    def test_findMedianSortedArrays_binary_search(
-        self, nums1: list[int], nums2: list[int], output: float
-    ):
-        sc = Solution()
-        assert (
-            sc.findMedianSortedArrays_binary_search(
-                nums1,
-                nums2,
-            )
-            == output
-        )
